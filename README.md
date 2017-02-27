@@ -49,7 +49,8 @@ Head over to `SearchViewController.swift` now. The code for this section isn't t
 Some things to consider:
 - The view controller should be a subclass of UICollectionViewDataSource and UICollectionViewDelegate (this tells the program that the view controller is guaranteed to implement a certain set of functions that are relevant to the collectionview).
 - In `viewDidLoad`, set the collectionview's delegate and datasource properties to self (this tells the collectionview that it should look within the view controller for the functions it needs to be functional).
-- You should implement the following collectionview functions:
+
+You should implement the following collectionview functions:
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {}
 
