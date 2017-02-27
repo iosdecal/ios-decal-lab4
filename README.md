@@ -10,7 +10,7 @@ In this lab you'll get to see how tableviews and collectionviews are typically i
 
 To begin this lab, clone this repository onto your own computer:
 	
-	git clone https://github.com/iosdecal/ios-decal-lab3
+	git clone https://github.com/iosdecal/ios-decal-lab4
 
 ## Getting Started 
 
@@ -38,7 +38,9 @@ Before we start writing any code, let's make sure that the flow of our app is co
 
 Now we'll start implementing the collectionview in `SearchViewController`, which will display all of our 18 categories in a grid format. 
 
-- Still in `Main.storyboard`, drag out a collectionview onto the first screen and extend it so that it fills the whole screen, including the navigation bar segment (you'll need to set some constraints here). Notice that a small box appears in the top left corner of the collectionview - this is a prototype cell where you can design the layout for each collectionview cell. Extend the box to be a square that fills about a third of the width of the screen (ideally we want our grid to be something like six rows of three - you may need to adjust this a bit). 
+![alt text](/README-images/collectionview.png)
+
+- Still in `Main.storyboard`, drag out a collectionview onto the first screen and extend it so that it fills the whole screen, including the navigation bar segment (you'll need to set some constraints here). Notice that a small box appears in the top left corner of the collectionview - this is a prototype cell where you can design the layout for each collectionview cell. Extend the box to be a square that fills about a third of the width of the screen (ideally we want our grid to be something like six rows of three - see the image above). 
 - Inside the prototype cell, place an imageview and set its constraints to fill the entire cell. 
 - We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, make sure to set the prototype cell's class in the identity inspector to your new class. Then, you can go ahead and create an outlet for the imageview.
 
@@ -73,7 +75,7 @@ Our goal in this section is to display a list of all Pokemon that fit the search
 
 - Go back to `Main.storyboard` and this time, place a tableview fitting the entire screen on `CategoryViewController`. You won't see a prototype cell automatically this time, but you can drag out a tableview cell and drop it on the tableview to see this. Extend the height of the cell to be a reasonable amount (about 80-100 should be good). 
 
-We want to display four things on each cell: the name, number, key stats, and image for each Pokemon. Drag out the ncessary UI elements and place them on the cell. The format should look something like this:
+We want to display four things on each cell: the name, number, key stats (attack/defense/health), and image for each Pokemon. Drag out the ncessary UI elements and place them on the cell. The format should look something like this:
 
 ![alt text](/README-images/tableviewcell.png)
 
@@ -117,6 +119,6 @@ And that's it! If everything works correctly, you should be able to navigate acr
 
 
 ## Grading ##
-You have the option to either be checked off by a TA or instructor during lab to receive your grade immediately **(recommended)**, or submit your files to [Gradescope](https://gradescope.com/courses/5482/assignments/17996/) to be graded later.
+You have the option to either be checked off by a TA or instructor during lab to receive your grade immediately **(recommended)**, or submit your files to [Gradescope](https://gradescope.com/courses/5482/assignments) to be graded later.
 
 If you are submitting via Gradescope, you will need to submit a zip folder of all of your project files (compress and submit the folder you cloned from GitHub).
