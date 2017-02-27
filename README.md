@@ -59,14 +59,16 @@ You should implement the following collectionview functions:
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
 
 You'll find the dictionary in `PokemonGenerator.swift` particularly useful for this section. You can reference the dictionary as follows:
+	
 	PokemonGenerator.categoryDict[/* some int */]
+	
 - In `cellForItemAt`, make sure to dequeue a cell object and cast it to the custom cell class you created before setting its properties. 
 - In `didSelectItemAt`, you should make use of the filteredPokemon function to get an array of Pokemon belonging to the selected category. Then perform a segue to CategoryViewController using the identifier you created in Part 1. You'll need to implement the `prepareForSegue` method and set the pokemonArray variable in the destination view controller to your filtered array.
 
 Once you've completed all of these steps, you should be able to run the program and see a grid of 18 different Pokemon categories. 
 
-
 ## Part 3: CategoryViewController ##
+
 
 
 ## Grading ##
