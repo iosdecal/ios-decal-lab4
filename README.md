@@ -38,7 +38,7 @@ Before we start writing any code, let's make sure that the flow of our app is co
 
 Now we'll start implementing the collectionview in `SearchViewController`, which will display all of our 18 categories in a grid format. 
 
-![alt text](/README-images/collectionview.png | width=75)
+![](/README-images/collectionview.png =250x250)
 
 - Still in `Main.storyboard`, drag out a collectionview onto the first screen and extend it so that it fills the whole screen, including the navigation bar segment (you'll need to set some constraints here). Notice that a small box appears in the top left corner of the collectionview - this is a prototype cell where you can design the layout for each collectionview cell. Extend the box to be a square that fills about a third of the width of the screen (ideally we want our grid to be something like six rows of three - see the image above). 
 - Inside the prototype cell, place an imageview and set its constraints to fill the entire cell. 
