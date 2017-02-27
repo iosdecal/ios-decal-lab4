@@ -40,7 +40,7 @@ Now we'll start implementing the collectionview in `SearchViewController`, which
 
 - Still in `Main.storyboard`, drag out a collectionview onto the first screen and extend it so that it fills the whole screen, including the navigation bar segment (you'll need to set some constraints here). Notice that a small box appears in the top left corner of the collectionview - this is a prototype cell where you can design the layout for each collectionview cell. Extend the box to be a square that fills about a third of the width of the screen (ideally we want our grid to be something like six rows of three - you may need to adjust this a bit). 
 - Inside the prototype cell, place an imageview and set its constraints to fill the entire cell. 
-- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, you can drag an outlet for the imageview onto it.
+- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, make sure to set the prototype cell's class in the identity inspector to your new class. Then, you can go ahead and create an outlet for the imageview.
 
 Feel free to change background colors of the collectionview and/or cells to improve the UI, if you wish.
 
@@ -61,7 +61,7 @@ You should implement the following collectionview functions:
 You'll find the dictionary in `PokemonGenerator.swift` particularly useful for this section. You can reference the dictionary as follows:
 	
 	PokemonGenerator.categoryDict[/* some int */]
-	
+
 - In `cellForItemAt`, make sure to dequeue a cell object and cast it to the custom cell class you created before setting its properties. 
 - In `didSelectItemAt`, you should make use of the filteredPokemon function to get an array of Pokemon belonging to the selected category. Then perform a segue to CategoryViewController using the identifier you created in Part 1. You'll need to implement the `prepareForSegue` method and set the pokemonArray variable in the destination view controller to your filtered array.
 
@@ -69,6 +69,51 @@ Once you've completed all of these steps, you should be able to run the program 
 
 ## Part 3: CategoryViewController ##
 
+Our goal in this section is to display a list of all Pokemon that fit the search criteria (e.g. selecting "electric" should show us only electric type Pokemon). We'll use a tableview for this part, but the process will be very similar.
+
+- Go back to `Main.storyboard` and this time, place a tableview fitting the entire screen on `CategoryViewController`. You won't see a prototype cell automatically this time, but you can drag out a tableview cell and drop it on the tableview to see this. Extend the height of the cell to be a reasonable amount (about 80-100 should be good). 
+
+We want to display four things on each cell: the name, number, key stats, and image for each Pokemon. Drag out the ncessary UI elements and place them on the cell. The format should look something like this:
+
+![alt text](/README-images/tableviewcell.png)
+
+- Just like before, create the outlets for the tableview and cell elements. You'll need to create a subclass of UITableViewCell for the cell elements and set the prototype cell's class to your new class again.
+
+Now go to `CategoryViewController.swift`. You should set the delegates and datasource again the same way, and also implement the same set of functions from above. You'll need to use the `pokemonArray` variable to implement `numberOfRowsInSection` and also `cellForRowAt`. 
+
+Note: in `cellForRowAt` we use a URL to load an image from the internet. This isn't too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function:
+
+	if let image = cachedImages[indexPath.row] {
+        cell.pokemonImage.image = image // may need to change this!
+    } else {
+        let url = URL(string: pokemon.imageUrl)!
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
+            if let e = error {
+                print("Error downloading picture: \(e)")
+            } else {
+                if let _ = response as? HTTPURLResponse {
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        self.cachedImages[indexPath.row] = image
+                        cell.pokemonImage.image = UIImage(data: imageData) // may need to change this!
+                        
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code")
+                }
+            }
+        }
+        downloadPicTask.resume()
+    }
+
+For reference, `cachedImages` is a dictionary that stores images we've already loaded so that we don't have to make a network request every time we scroll to a cell. 
+
+In `didSelectRowAt`, set the selectedIndexPath variable at the top of the file and then perform a segue to `PokemonInfoViewController`. Your `prepareForSegue` function should assign both the `pokemon` and `image` properties of `PokemonInfoViewController`.
+
+And that's it! If everything works correctly, you should be able to navigate across the entire app and click on any Pokemon to see its statistics. You've now built your first tableview/collectionview app!
 
 
 ## Grading ##
