@@ -26,9 +26,6 @@ class PokemonInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let image = image {
-            imageView.image = image
-        }
         if let pokemon = pokemon {
             nameLabel.text = pokemon.name
             speciesLabel.text = pokemon.species
@@ -39,6 +36,28 @@ class PokemonInfoViewController: UIViewController {
             spdefLabel.text = "Sp. Def: \(pokemon.specialDefense!)"
             speedLabel.text = "Speed: \(pokemon.speed!)"
             totalLabel.text = "Total: \(pokemon.total!)"
+            if let image = image {
+                imageView.image = image
+            } else {
+                let url = URL(string: pokemon.imageUrl)!
+                let session = URLSession(configuration: .default)
+                let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
+                    if let e = error {
+                        print("Error downloading picture: \(e)")
+                    } else {
+                        if let _ = response as? HTTPURLResponse {
+                            if let imageData = data {
+                                self.imageView.image = UIImage(data: imageData)
+                            } else {
+                                print("Couldn't get image: Image is nil")
+                            }
+                        } else {
+                            print("Couldn't get response code")
+                        }
+                    }
+                }
+                downloadPicTask.resume()
+            }
         }
         // Do any additional setup after loading the view.
     }
