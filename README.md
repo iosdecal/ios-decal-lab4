@@ -31,7 +31,7 @@ Now, let's go ahead and get started!
 
 ## Part 1: Navigation ##
 Before we start writing any code, let's make sure that the flow of our app is completely fleshed out. Go to `Main.storyboard` and complete the following tasks:
-- **Create a segue** between `SearchViewController` and `CategoryViewController` and another one between `CategoryViewController` and `PokemonInfoViewController`. Both of these should be "show" type segues. **Be sure to give the segues identifiers so that we can reference them from our code**. 
+- **Create a segue** between `SearchViewController` and `CategoryViewController` and another one between `CategoryViewController` and `PokemonInfoViewController`. Both of these should be "show" type segues. Since we don't have an UI elements in those views yet, you'll need to need to Control+drag from the Document Outline or the yellow, circular icon at the top of each view controller. **Be sure to give the segues identifiers so that we can reference them from our code**. 
 - Embed the first screen in a **navigation controller** (this will allow us to move freely back and forth between screens). You can do this either by dragging out a navigation controller and dragging a segue to `SearchViewController` as its root view controller, or by clicking on `SearchViewController`, going to the Editor tab, and choosing Embed In > Navigation Controller. Also, **make sure that the navigation controller is set to our initial view controller in the attributes inspector**.
 
 ## Part 2: SearchViewController ##
@@ -42,7 +42,7 @@ Now we'll start implementing the collectionview in `SearchViewController`, which
 
 - Still in `Main.storyboard`, drag out a collectionview onto the first screen and extend it so that it fills the whole screen, including the navigation bar segment (you'll need to set some constraints here). Notice that a small box appears in the top left corner of the collectionview - this is a prototype cell where you can design the layout for each collectionview cell. Extend the box to be a square that fills about a third of the width of the screen (ideally we want our grid to be something like six rows of three - see the image above). 
 - Inside the prototype cell, place an imageview and set its constraints to fill the entire cell. 
-- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, make sure to set the prototype cell's class in the identity inspector to your new class. Then, you can go ahead and create an outlet for the imageview.
+- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, make sure to set the prototype cell's class in the identity inspector to your new class. Then, you can go ahead and create an outlet for the imageview in your new collectionviewcell class file.
 
 Feel free to change background colors of the collectionview and/or cells to improve the UI, if you wish.
 
@@ -64,8 +64,11 @@ You'll find the dictionary in `PokemonGenerator.swift` particularly useful for t
 	
 	PokemonGenerator.categoryDict[/* some int */]
 
-- In `cellForItemAt`, make sure to dequeue a cell object and cast it to the custom cell class you created before setting its properties. 
-- In `didSelectItemAt`, you should make use of the filteredPokemon function to get an array of Pokemon belonging to the selected category. Then perform a segue to CategoryViewController using the identifier you created in Part 1. You'll need to implement the `prepareForSegue` method and set the pokemonArray variable in the destination view controller to your filtered array.
+- In `cellForItemAt`, make sure to dequeue a cell object and cast it to the custom cell class you created before setting its properties. In order to dequeue the cell, you'll need to set a cell reuse identifier for your collectionview cell in `Main.storyboard` 
+- In `didSelectItemAt` you'll need to implement the following functionality:
+ - Use the `filteredPokemon(ofType type: Int)` function to get an array of Pokemon belonging to the selected category (based off the cell the user selected).
+ - Then perform a segue to CategoryViewController using the identifier you created in Part 1. (Though we've only gone over triggering segues in Storyboard by control-dragging from a button, you can trigger a segue that you created in Storyboard between two view controllers programmatically by calling the following method in your code: `performSegue(withIdentifier: <YourSegueIdentifierFromStoryboard>, sender: <Any?>)`	
+- Since we only want the CategoryViewController to display Pokemon from the category selected by the user, we need to create and implement the `prepareForSegue` method as well to pass along which Pokemon should be displayed. To do this, add the prepareForSegue method to the SearchViewController, and set the pokemonArray variable in the destination view controller (segue.destination) to your filtered array. (If you're having trouble at this step, check out the prepare for segue example in [Lecture 3](http://iosdecal.com/Lectures/Lecture3.pdf#page=28))
 
 Once you've completed all of these steps, you should be able to run the program and see a grid of 18 different Pokemon categories. 
 
@@ -74,16 +77,20 @@ Once you've completed all of these steps, you should be able to run the program 
 Our goal in this section is to display a list of all Pokemon that fit the search criteria (e.g. selecting "electric" should show us only electric type Pokemon). We'll use a tableview for this part, but the process will be very similar.
 
 - Go back to `Main.storyboard` and this time, place a tableview fitting the entire screen on `CategoryViewController`. You won't see a prototype cell automatically this time, but you can drag out a tableview cell and drop it on the tableview to see this. Extend the height of the cell to be a reasonable amount (about 80-100 should be good). 
+- We want to display four things on each cell: the name, number, key stats (attack/defense/health), and image for each Pokemon. Drag out the necessary UI elements and place them on the cell.
 
-We want to display four things on each cell: the name, number, key stats (attack/defense/health), and image for each Pokemon. Drag out the ncessary UI elements and place them on the cell. The format should look something like this:
-
+The format should look something like this (does not have to be exact):
 ![alt text](/README-images/tableviewcell.png)
 
-- Just like before, create the outlets for the tableview and cell elements. You'll need to create a subclass of UITableViewCell for the cell elements and set the prototype cell's class to your new class again.
+- Just like before, you'll need to create a subclass of UITableViewCell for the cell elements and set the prototype cell's class to your new class again. Once you have done this create outlets for your cell's UI elements in your newly created custom tableviewcell class.
 
-Now go to `CategoryViewController.swift`. You should set the delegates and datasource again the same way, and also implement the same set of functions from above. You'll need to use the `pokemonArray` variable to implement `numberOfRowsInSection` and also `cellForRowAt`. 
+Now go to `CategoryViewController.swift`, so we can set up our table view (these steps are almost identical to what you did for your collectionview in part 2).
 
-Note: in `cellForRowAt` we use a URL to load an image from the internet. This isn't too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function:
+- Create an outlet for your tableview 
+- Set the delegate and datasource for this tableview in `viewDidLoad`, and make your class subclass UITableViewDelegate and UITableViewDataSource in the same way you did for your collectionview
+- implement the same set of functions from part 2. You'll need to use the `pokemonArray` variable to implement `numberOfRowsInSection` and also `cellForRowAt`. 
+
+Instead of loading images from `xcassets`, for this table view, we will be using a URL to load an images from the internet. This isn't too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function `cellForRowAt`:
 
 	if let image = cachedImages[indexPath.row] {
         cell.pokemonImage.image = image // may need to change this!
@@ -113,14 +120,23 @@ Note: in `cellForRowAt` we use a URL to load an image from the internet. This is
 
 For reference, `cachedImages` is a dictionary that stores images we've already loaded so that we don't have to make a network request every time we scroll to a cell. 
 
-In `didSelectRowAt`, set the selectedIndexPath variable at the top of the file and then perform a segue to `PokemonInfoViewController`. Your `prepareForSegue` function should assign both the `pokemon` and `image` properties of `PokemonInfoViewController`. To set the image, you should make use of `cachedImages`, but in some cases it is possible that we click on a cell before its image has been loaded - to handle this, you should check that the image is actually in the dictionary (hint: use safe unwrapping). Otherwise, just do nothing (`PokemonInfoViewController` takes care of image loading if nothing is passed in). 
+- In `didSelectRowAt`, set the `selectedIndexPath` variable at the top of the file
+- Then perform a segue to `PokemonInfoViewController` within `didSelectRowAt` Your `prepareForSegue` function should assign both the `pokemon` and `image` properties of `PokemonInfoViewController`. 
+ - To set the image, you should make use of `cachedImages`, but in some cases it is possible that we click on a cell before its image has been loaded. To handle this, you should check that the image is actually in the dictionary (hint: use safe optional unwrapping). Otherwise, just do nothing (`PokemonInfoViewController` takes care of image loading if nothing is passed in). 
 
 *A quick side note about image loading: typically it's not a good idea to attempt to cache images ourselves (we could end up unnecessarily storing hundreds of images); instead, most iOS developers use external libraries which automatically take care of making URL requests and also caching images for us. Since we haven't gone over how to implement third party libraries in an app yet, we'll avoid that for this lab, but be aware that there are more efficient/less redundant ways to load images than this.*
 
 And that's it! If everything works correctly, you should be able to navigate across the entire app and click on any Pokemon to see its statistics. You've now built your first tableview/collectionview app!
 
-
 ## Grading ##
-You have the option to either be checked off by a TA or instructor during lab to receive your grade immediately **(recommended)**, or submit your files to [Gradescope](https://gradescope.com/courses/5482/assignments) to be graded later.
+Once you have finished, please submit your files to [Gradescope](https://gradescope.com/courses/5482). You will need to submit files EVEN if you are being checked off, since Gradescope does not support submission-less grading at the moment. We have enabled group submission for this assignment, so make sure to include your partner's name if you only worked on one computer.
 
-If you are submitting via Gradescope, you will need to submit a zip folder of all of your project files (compress and submit the folder you cloned from GitHub).
+To submit, please upload your code to either GitHub or Bitbucket, and use the "Github" or "Bitbucket" submission feature on Gradescope (we've experienced the fewest amount of bugs with students who have submitted this way). Please check out the [slides in Lecture 3](http://iosdecal.com/Lectures/Lecture3.pdf) for step-by-step submission instructions if you're confused about how to do this (or ask a TA!)
+
+Alternatively you can submit your lab as a zip folder. To do this please open your ios-decal-lab3 folder, and compress the contents inside (not the folder itself). This should generate a file, **Archive.zip**, that you can submit to Gradescope.
+
+If you've finished during lab and need to get checked off, please fill out one of the following forms (based off what lab you are in): 
+
+- [310 Soda Lab Lab Check-Off Form](https://goo.gl/forms/yuUCJOW4KWzokhxt1)
+
+- [220 Jacobs Lab Lab Check-Off Form](https://goo.gl/forms/y33tC041P7QHj6a82)
