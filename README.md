@@ -31,7 +31,7 @@ Now, let's go ahead and get started!
 
 ## Part 1: Navigation ##
 Before we start writing any code, let's make sure that the flow of our app is completely fleshed out. Go to `Main.storyboard` and complete the following tasks:
-- **Create a segue** between `SearchViewController` and `CategoryViewController` and another one between `CategoryViewController` and `PokemonInfoViewController`. Both of these should be "show" type segues. **Be sure to give the segues identifiers so that we can reference them from our code**. 
+- **Create a segue** between `SearchViewController` and `CategoryViewController` and another one between `CategoryViewController` and `PokemonInfoViewController`. Both of these should be "show" type segues. Since we don't have an UI elements in those views yet, you'll need to need to Control+drag from the Document Outline or the yellow, circular icon at the top of each View Controller. **Be sure to give the segues identifiers so that we can reference them from our code**. 
 - Embed the first screen in a **navigation controller** (this will allow us to move freely back and forth between screens). You can do this either by dragging out a navigation controller and dragging a segue to `SearchViewController` as its root view controller, or by clicking on `SearchViewController`, going to the Editor tab, and choosing Embed In > Navigation Controller. Also, **make sure that the navigation controller is set to our initial view controller in the attributes inspector**.
 
 ## Part 2: SearchViewController ##
@@ -42,7 +42,7 @@ Now we'll start implementing the collectionview in `SearchViewController`, which
 
 - Still in `Main.storyboard`, drag out a collectionview onto the first screen and extend it so that it fills the whole screen, including the navigation bar segment (you'll need to set some constraints here). Notice that a small box appears in the top left corner of the collectionview - this is a prototype cell where you can design the layout for each collectionview cell. Extend the box to be a square that fills about a third of the width of the screen (ideally we want our grid to be something like six rows of three - see the image above). 
 - Inside the prototype cell, place an imageview and set its constraints to fill the entire cell. 
-- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, make sure to set the prototype cell's class in the identity inspector to your new class. Then, you can go ahead and create an outlet for the imageview.
+- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, make sure to set the prototype cell's class in the identity inspector to your new class. Then, you can go ahead and create an outlet for the imageview in your new collectionviewcell class file.
 
 Feel free to change background colors of the collectionview and/or cells to improve the UI, if you wish.
 
@@ -64,8 +64,12 @@ You'll find the dictionary in `PokemonGenerator.swift` particularly useful for t
 	
 	PokemonGenerator.categoryDict[/* some int */]
 
-- In `cellForItemAt`, make sure to dequeue a cell object and cast it to the custom cell class you created before setting its properties. 
-- In `didSelectItemAt`, you should make use of the filteredPokemon function to get an array of Pokemon belonging to the selected category. Then perform a segue to CategoryViewController using the identifier you created in Part 1. You'll need to implement the `prepareForSegue` method and set the pokemonArray variable in the destination view controller to your filtered array.
+- In `cellForItemAt`, make sure to dequeue a cell object and cast it to the custom cell class you created before setting its properties. In order to dequeue the cell, you'll need to set a cell reuse identifier for your collectionview cell in `Main.storyboard` 
+- In `didSelectItemAt`, you should make use of the filteredPokemon function to get an array of Pokemon belonging to the selected category. Then perform a segue to CategoryViewController using the identifier you created in Part 1. You'll need to implement the `prepareForSegue` method and set the pokemonArray variable in the destination view controller (segue.destination) to your filtered array.
+
+*Note: Though we've only gone over triggering segues in Storyboard by control-dragging from a button, you can trigger a segue that you created in Storyboard between two View Controllers programmatically by calling the following method in your code*
+
+	performSegue(withIdentifier: <Your Segue Identifier Created in Part 1>, sender: <Any?>)
 
 Once you've completed all of these steps, you should be able to run the program and see a grid of 18 different Pokemon categories. 
 
