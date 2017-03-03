@@ -2,7 +2,7 @@
 
 
 ## Due Date ##
-Tuesday, March 7th at 11:59 pm
+Tuesday, March 14th at 11:59 pm
 
 ## Overview ##
 
@@ -135,8 +135,3 @@ To submit, please upload your code to either GitHub or Bitbucket, and use the "G
 
 Alternatively you can submit your lab as a zip folder. To do this please open your ios-decal-lab3 folder, and compress the contents inside (not the folder itself). This should generate a file, **Archive.zip**, that you can submit to Gradescope.
 
-If you've finished during lab and need to get checked off, please fill out one of the following forms (based off what lab you are in): 
-
-- [310 Soda Lab Lab Check-Off Form](https://goo.gl/forms/yuUCJOW4KWzokhxt1)
-
-- [220 Jacobs Lab Lab Check-Off Form](https://goo.gl/forms/y33tC041P7QHj6a82)
