@@ -134,5 +134,6 @@ Once you have finished, please submit your files to [Gradescope](https://gradesc
 To submit, please upload your code to either GitHub or Bitbucket, and use the "Github" or "Bitbucket" submission feature on Gradescope (we've experienced the fewest amount of bugs with students who have submitted this way). Please check out the [slides in Lecture 3](http://iosdecal.com/Lectures/Lecture3.pdf) for step-by-step submission instructions if you're confused about how to do this (or ask a TA!)
 
 Checkoff Form for [Akilesh's Lab:](https://goo.gl/forms/A0YoAOKXvyrlUPZW2)
+
 Alternatively you can submit your lab as a zip folder. To do this please open your ios-decal-lab3 folder, and compress the contents inside (not the folder itself). This should generate a file, **Archive.zip**, that you can submit to Gradescope.
 
