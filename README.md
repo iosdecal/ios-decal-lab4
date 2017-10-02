@@ -90,7 +90,8 @@ Now go to `CategoryViewController.swift`, so we can set up our table view (these
 - Set the delegate and datasource for this tableview in `viewDidLoad`, and make your class subclass UITableViewDelegate and UITableViewDataSource in the same way you did for your collectionview
 - implement the same set of functions from part 2. You'll need to use the `pokemonArray` variable to implement `numberOfRowsInSection` and also `cellForRowAt`. 
 
-Instead of loading images from `xcassets`, for this table view, we will be using a URL to load an images from the internet. This isn't too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function `cellForRowAt`:
+Instead of loading images from `xcassets`, for this table view, we will be using a URL to load an images from the internet. This 
+too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function `cellForRowAt`:
 
 	if let image = cachedImages[indexPath.row] {
         cell.pokemonImage.image = image // may need to change this!
@@ -129,13 +130,6 @@ For reference, `cachedImages` is a dictionary that stores images we've already l
 And that's it! If everything works correctly, you should be able to navigate across the entire app and click on any Pokemon to see its statistics. You've now built your first tableview/collectionview app!
 
 ## Grading ##
-Once you have finished, please submit your files to [Gradescope](https://gradescope.com/courses/5482). You will need to submit files EVEN if you are being checked off, since Gradescope does not support submission-less grading at the moment. We have enabled group submission for this assignment, so make sure to include your partner's name if you only worked on one computer.
+Once you've finished the lab, you can check-off using this form https://goo.gl/forms/HNh43aZNNYj3cIKV2. If you weren't able to finish before 8pm, make sure to let a TA know you attended (do not fill out the google form), and be sure to check-off next week at the beginning of lab.
 
-To submit, please upload your code to either GitHub or Bitbucket, and use the "Github" or "Bitbucket" submission feature on Gradescope (we've experienced the fewest amount of bugs with students who have submitted this way). Please check out the [slides in Lecture 3](http://iosdecal.com/Lectures/Lecture3.pdf) for step-by-step submission instructions if you're confused about how to do this (or ask a TA!)
-
-Checkoff Form for [Akilesh's Lab:](https://goo.gl/forms/A0YoAOKXvyrlUPZW2)
-
-Checkoff Form for [Paige's Lab:](https://docs.google.com/a/berkeley.edu/forms/d/e/1FAIpQLSc2g24rYRd0hhnxjBnSZiwyBr-C45J6LZS6BOQSQfaaSH-KDA/viewform?usp=sf_link)
-
-Alternatively you can submit your lab as a zip folder. To do this please open your ios-decal-lab3 folder, and compress the contents inside (not the folder itself). This should generate a file, **Archive.zip**, that you can submit to Gradescope.
-
+We will grade your work based off the following criteria (all requirements must be satisfied to receive credit).
