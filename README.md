@@ -31,8 +31,9 @@ Now, let's go ahead and get started!
 
 ## Part 1: Navigation ##
 Before we start writing any code, let's make sure that the flow of our app is completely fleshed out. Go to `Main.storyboard` and complete the following tasks:
-- **Create a segue** between `SearchViewController` and `CategoryViewController` and another one between `CategoryViewController` and `PokemonInfoViewController`. Both of these should be "show" type segues. Since we don't have an UI elements in those views yet, you'll need to need to Control+drag from the Document Outline or the yellow, circular icon at the top of each view controller. **Be sure to give the segues identifiers so that we can reference them from our code**. 
-- Embed the first screen in a **navigation controller** (this will allow us to move freely back and forth between screens). You can do this either by dragging out a navigation controller and dragging a segue to `SearchViewController` as its root view controller, or by clicking on `SearchViewController`, going to the Editor tab, and choosing Embed In > Navigation Controller. Also, **make sure that the navigation controller is set to our initial view controller in the attributes inspector**.
+- **Create a show segue** between `SearchViewController` and `CategoryViewController` and add a segue identifier
+- **Create a show segue** between `CategoryViewController` and `PokemonInfoViewController` and add a segue identifier
+- Embed the first screen in a **navigation controller**. You can do this either by dragging out a navigation controller and dragging a segue to `SearchViewController` as its root view controller, or by clicking on `SearchViewController`, going to the Editor tab, and choosing Embed In > Navigation Controller. Also, **make sure that the navigation controller is set to our initial view controller in the attributes inspector**.
 
 ## Part 2: SearchViewController ##
 
@@ -41,15 +42,15 @@ Now we'll start implementing the collectionview in `SearchViewController`, which
 ![](/README-images/collectionview.png)
 
 - Still in `Main.storyboard`, drag out a collectionview onto the first screen and extend it so that it fills the whole screen, including the navigation bar segment (you'll need to set some constraints here). Notice that a small box appears in the top left corner of the collectionview - this is a prototype cell where you can design the layout for each collectionview cell. Extend the box to be a square that fills about a third of the width of the screen (ideally we want our grid to be something like six rows of three - see the image above). 
-- Inside the prototype cell, place an imageview and set its constraints to fill the entire cell. 
-- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. The collectionview should be easy - just drag an outlet onto `SearchViewController`. However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there! Instead, we need to create a class for our custom collectionviewcell that subclasses UICollectionViewCell. Once you've created this file, make sure to set the prototype cell's class in the identity inspector to your new class. Then, you can go ahead and create an outlet for the imageview in your new collectionviewcell class file.
-
-Feel free to change background colors of the collectionview and/or cells to improve the UI, if you wish.
+- Inside the prototype cell, place an imageView and set its constraints to fill the entire cell. 
+- We need to create two outlets at this point: one for the collectionview itself and one for the imageview. 
+    - The collectionview should be easy - just drag an outlet into `SearchViewController`. 
+    - However, the imageview isn't a property of the view controller, so it's outlet doesn't belong there (why? we want the image view to appear in every cell of our collectionview, so it should be a property of a UICollectionViewCell instead). To do this, **(1) create a class for our custom collectionViewCell that subclasses UICollectionViewCell**. Once you've created this file, **(2) set your prototype cell in storyboard class to your new custom cell class**. Then, **(3)create an outlet for the imageview in your new collectionviewcell class file.**
 
 Head over to `SearchViewController.swift` now. The code for this section isn't too difficult, but there's many tedious things to take care of. By the end of this section, you should have implemented all of the collectionview's functionality.
 
 Some things to consider:
-- The view controller should be a subclass of UICollectionViewDataSource and UICollectionViewDelegate (this tells the program that the view controller is guaranteed to implement a certain set of functions that are relevant to the collectionview).
+- The view controller should subclass UICollectionViewDataSource and UICollectionViewDelegate (this tells the program that the view controller is guaranteed to implement a certain set of functions that are relevant to the collectionview).
 - In `viewDidLoad`, set the collectionview's delegate and datasource properties to self (this tells the collectionview that it should look within the view controller for the functions it needs to be functional).
 
 You should implement the following collectionview functions:
@@ -68,7 +69,7 @@ You'll find the dictionary in `PokemonGenerator.swift` particularly useful for t
 - In `didSelectItemAt` you'll need to implement the following functionality:
  - Use the `filteredPokemon(ofType type: Int)` function to get an array of Pokemon belonging to the selected category (based off the cell the user selected).
  - Then perform a segue to CategoryViewController using the identifier you created in Part 1. (Though we've only gone over triggering segues in Storyboard by control-dragging from a button, you can trigger a segue that you created in Storyboard between two view controllers programmatically by calling the following method in your code: `performSegue(withIdentifier: <YourSegueIdentifierFromStoryboard>, sender: <Any?>)`	
-- Since we only want the CategoryViewController to display Pokemon from the category selected by the user, we need to create and implement the `prepareForSegue` method as well to pass along which Pokemon should be displayed. To do this, add the prepareForSegue method to the SearchViewController, and set the pokemonArray variable in the destination view controller (segue.destination) to your filtered array. (If you're having trouble at this step, check out the prepare for segue example in [Lecture 3](http://iosdecal.com/Lectures/Lecture3.pdf#page=28))
+- Since we only want the CategoryViewController to display Pokemon from the category selected by the user, we need to create and implement the `prepareForSegue` method as well to pass along which Pokemon should be displayed. To do this, add the prepareForSegue method to the SearchViewController, and set the pokemonArray variable in the destination view controller (segue.destination) to your filtered array. (If you're having trouble at this step, check out the prepare for segue example in [Lecture 3](http://iosdecal.com/fall-2017-slides/lecture3.pdf#page=32))
 
 Once you've completed all of these steps, you should be able to run the program and see a grid of 18 different Pokemon categories. 
 
@@ -90,8 +91,7 @@ Now go to `CategoryViewController.swift`, so we can set up our table view (these
 - Set the delegate and datasource for this tableview in `viewDidLoad`, and make your class subclass UITableViewDelegate and UITableViewDataSource in the same way you did for your collectionview
 - implement the same set of functions from part 2. You'll need to use the `pokemonArray` variable to implement `numberOfRowsInSection` and also `cellForRowAt`. 
 
-Instead of loading images from `xcassets`, for this table view, we will be using a URL to load an images from the internet. This 
-too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function `cellForRowAt`:
+Instead of loading images from `xcassets`, for this table view, we will be using a URL to load an images from the internet. This isn't too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function `cellForRowAt`:
 
 	if let image = cachedImages[indexPath.row] {
         cell.pokemonImage.image = image // may need to change this!
@@ -131,5 +131,3 @@ And that's it! If everything works correctly, you should be able to navigate acr
 
 ## Grading ##
 Once you've finished the lab, you can check-off using this form https://goo.gl/forms/HNh43aZNNYj3cIKV2. If you weren't able to finish before 8pm, make sure to let a TA know you attended (do not fill out the google form), and be sure to check-off next week at the beginning of lab.
-
-We will grade your work based off the following criteria (all requirements must be satisfied to receive credit).
