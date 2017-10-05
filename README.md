@@ -106,8 +106,9 @@ Instead of loading images from `xcassets`, for this table view, we will be using
                     if let imageData = data {
                         let image = UIImage(data: imageData)
                         self.cachedImages[indexPath.row] = image
-                        cell.pokemonImage.image = UIImage(data: imageData) // may need to change this!
-                        
+                        DispatchQueue.main.async {
+                            cell.pokemonImage.image = image // may need to change this!
+                        }
                     } else {
                         print("Couldn't get image: Image is nil")
                     }

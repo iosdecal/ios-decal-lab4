@@ -47,7 +47,9 @@ class PokemonInfoViewController: UIViewController {
                     } else {
                         if let _ = response as? HTTPURLResponse {
                             if let imageData = data {
-                                self.imageView.image = UIImage(data: imageData)
+                                DispatchQueue.main.async {
+                                    self.imageView.image = UIImage(data: imageData)
+                                }
                             } else {
                                 print("Couldn't get image: Image is nil")
                             }

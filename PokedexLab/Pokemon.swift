@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Pokemon {
+@objc class Pokemon: NSObject {
     
     let name: String!
     let number: Int!
@@ -36,6 +36,10 @@ class Pokemon {
         self.total = total
         self.types = types
         self.imageUrl = "http://img.pokemondb.net/artwork/\(name.components(separatedBy: " ")[0].lowercased()).jpg"
+    }
+  
+    static func ==(lhs: Pokemon, rhs: Pokemon) -> Bool {
+        return lhs.name == rhs.name
     }
     
 }
