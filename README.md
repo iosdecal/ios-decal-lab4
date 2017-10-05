@@ -95,8 +95,8 @@ Instead of loading images from `xcassets`, for this table view, we will be using
 
         if let image = cachedImages[indexPath.row] {
             DispatchQueue.main.async {
-                cell.pokeImage.image = image // may need to change this if you
-		               named your image view something else!
+                cell.pokeImage.image = image // may need to change this if you named your 
+		                                image view something different!
             }
         } else {
             let url = URL(string: pokemon.imageUrl)!
@@ -109,9 +109,10 @@ Instead of loading images from `xcassets`, for this table view, we will be using
                         if let imageData = data {
                             let image = UIImage(data: imageData)
                             self.cachedImages[indexPath.row] = image
-                            cell.pokeImage.image = UIImage(data: imageData) // may need to 
-			                        change this if you named your image view something else!
-                            
+                            DispatchQueue.main.async {
+                                cell.pokeImage.image = UIImage(data: imageData) // may need to 
+				      change this if you named your image view something different!
+                            }
                         } else {
                             print("Couldn't get image: Image is nil")
                         }
