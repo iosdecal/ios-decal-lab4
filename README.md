@@ -1,8 +1,8 @@
 # Lab 4 : TableViews and CollectionViews #
 
 
-## Due Date ##
-Tuesday, March 14th at 11:59 pm
+## Due Date UPDATED ##
+Wednesday, October 18th at 11:59 pm
 
 ## Overview ##
 
