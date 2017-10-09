@@ -2,7 +2,9 @@
 
 
 ## Due Date UPDATED ##
-Wednesday, October 18th at 11:59 pm
+Wednesday, October 11th at 11:59pm
+
+Submit via [Gradescope](https://gradescope.com/courses/9817/assignments/40398)
 
 ## Overview ##
 
@@ -135,4 +137,4 @@ For reference, `cachedImages` is a dictionary that stores images we've already l
 And that's it! If everything works correctly, you should be able to navigate across the entire app and click on any Pokemon to see its statistics. You've now built your first tableview/collectionview app!
 
 ## Grading ##
-Once you've finished the lab, you can check-off using this form https://goo.gl/forms/HNh43aZNNYj3cIKV2. If you weren't able to finish before 8pm, make sure to let a TA know you attended (do not fill out the google form), and be sure to check-off next week at the beginning of lab.
+Once you've finished the lab, you can check-off using this form https://goo.gl/forms/HNh43aZNNYj3cIKV2. If you weren't able to finish before 8pm, make sure to let a TA know you attended (do not fill out the google form), and submit your assignment via [Gradescope](https://gradescope.com/courses/9817/assignments/40398) before 11:59pm.
