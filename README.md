@@ -96,10 +96,8 @@ Now go to `CategoryViewController.swift`, so we can set up our table view (these
 Instead of loading images from `xcassets`, for this table view, we will be using a URL to load an images from the internet. This isn't too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function `cellForRowAt`:
 
         if let image = cachedImages[indexPath.row] {
-            DispatchQueue.main.async {
-                cell.pokeImage.image = image // may need to change this if you named your 
+            cell.pokeImage.image = image // may need to change this if you named your 
 		                                image view something different!
-            }
         } else {
             let url = URL(string: pokemon.imageUrl)!
             let session = URLSession(configuration: .default)
