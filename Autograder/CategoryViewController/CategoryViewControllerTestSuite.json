@@ -1,0 +1,56 @@
+[
+  {
+    "Test Number": 0,
+    "Description": "Exists in Storyboard",
+    "Dependencies": "",
+    "Point Value": 0
+  },
+  {
+    "Test Number": 1,
+    "Description": "Has instantiated UITableView",
+    "Dependencies": "",
+    "Point Value": 1
+  },
+  {
+    "Test Number": 2,
+    "Description": "Conforms to UITableViewDataSource",
+    "Dependencies": "",
+    "Point Value": 1
+  },
+  {
+    "Test Number": 3,
+    "Description": "tableView(_:numberOfRowsInSection:) returns correct number of rows (value's not hardcoded)",
+    "Dependencies": 1,
+    "Point Value": 1
+  },
+  {
+    "Test Number": 4,
+    "Description": "tableView(_:cellForRowAt:) returns cell containing UIImageView & 3 UILabels",
+    "Dependencies": 1,
+    "Point Value": 1
+  },
+  {
+    "Test Number": 5,
+    "Description": "UILabels in cell contain Pokemon's name, number, key stats.",
+    "Dependencies": 4,
+    "Point Value": 1
+  },
+  {
+    "Test Number": 6,
+    "Description": "Conforms to UITableViewDelegate",
+    "Dependencies": "",
+    "Point Value": 1
+  },
+  {
+    "Test Number": 7,
+    "Description": "tableView(_:didSelectRowAt:) implemented",
+    "Dependencies": 1,
+    "Point Value": 1
+  },
+  {
+    "Test Number": 8,
+    "Description": "prepare(for:sender:) configures 'pokemon' & 'image' in the destination view controller",
+    "Dependencies": 7,
+    "Point Value": 1
+  }
+]

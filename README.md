@@ -1,10 +1,6 @@
 # Lab 4 : TableViews and CollectionViews #
 
-
-## Due Date UPDATED ##
-Wednesday, October 11th at 11:59pm
-
-Submit via [Gradescope](https://gradescope.com/courses/9817/assignments/40398)
+##### Note: This is a two week lab (we will be finishing it next week). 
 
 ## Overview ##
 
@@ -96,9 +92,9 @@ Now go to `CategoryViewController.swift`, so we can set up our table view (these
 Instead of loading images from `xcassets`, for this table view, we will be using a URL to load an images from the internet. This isn't too difficult to look up but it involves some URL requests which we have not covered yet, so feel free to copy this block of code into your function `cellForRowAt`:
 
         if let image = cachedImages[indexPath.row] {
-            cell.pokeImage.image = image // may need to change this if you named your 
-		                                image view something different!
+            cell.pokemonImageView.image = image
         } else {
+            cell.pokemonImageView.image = nil
             let url = URL(string: pokemon.imageUrl)!
             let session = URLSession(configuration: .default)
             let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
@@ -108,10 +104,9 @@ Instead of loading images from `xcassets`, for this table view, we will be using
                     if let _ = response as? HTTPURLResponse {
                         if let imageData = data {
                             let image = UIImage(data: imageData)
-                            self.cachedImages[indexPath.row] = image
                             DispatchQueue.main.async {
-                                cell.pokeImage.image = UIImage(data: imageData) // may need to 
-				      change this if you named your image view something different!
+                                self.cachedImages[indexPath.row] = image
+                                cell.pokemonImageView.image = image // UIImage(data: imageData)
                             }
                         } else {
                             print("Couldn't get image: Image is nil")
@@ -135,4 +130,4 @@ For reference, `cachedImages` is a dictionary that stores images we've already l
 And that's it! If everything works correctly, you should be able to navigate across the entire app and click on any Pokemon to see its statistics. You've now built your first tableview/collectionview app!
 
 ## Grading ##
-Once you've finished the lab, you can check-off using this form https://goo.gl/forms/HNh43aZNNYj3cIKV2. If you weren't able to finish before 8pm, make sure to let a TA know you attended (do not fill out the google form), and submit your assignment via [Gradescope](https://gradescope.com/courses/9817/assignments/40398) before 11:59pm.
+Once you've finished the lab, you can get checked-off using this form: https://goo.gl/forms/RuV3a8KHjt0x86DQ2. If you weren't able to finish before 8pm, make sure to fill in the keyword question, and be sure to check-off next week at the beginning of lab.

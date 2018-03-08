@@ -1,0 +1,11 @@
+framework module BKAutograder {
+  umbrella header "BKAutograder.h"
+
+  export *
+  module * { export * }
+}
+
+module BKAutograder.Swift {
+    header "BKAutograder-Swift.h"
+    requires objc
+}
