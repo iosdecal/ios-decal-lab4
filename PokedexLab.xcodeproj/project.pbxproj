@@ -17,12 +17,6 @@
 		3C6CFD411E62885100D991A0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CFD401E62885100D991A0 /* SearchViewController.swift */; };
 		3C6CFD431E62889D00D991A0 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CFD421E62889D00D991A0 /* CategoryViewController.swift */; };
 		3C6CFD451E6288BB00D991A0 /* PokemonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CFD441E6288BB00D991A0 /* PokemonInfoViewController.swift */; };
-		BF_145599767391 /* SearchViewControllerTestSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_768500610532 /* SearchViewControllerTestSuite.swift */; };
-		BF_157456206171 /* SearchViewControllerTestSuite.csv in Resources */ = {isa = PBXBuildFile; fileRef = FR_178765736174 /* SearchViewControllerTestSuite.csv */; };
-		BF_391335381937 /* CategoryViewControllerTestSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_209053577773 /* CategoryViewControllerTestSuite.swift */; };
-		BF_613981408126 /* BKAutograder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_812998827470 /* BKAutograder.framework */; };
-		BF_683460714191 /* BKAutograder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FR_812998827470 /* BKAutograder.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BF_835356725815 /* CategoryViewControllerTestSuite.csv in Resources */ = {isa = PBXBuildFile; fileRef = FR_705765005086 /* CategoryViewControllerTestSuite.csv */; };
 		BF_870472026266 /* Main.storyboard in Copy Storyboard */ = {isa = PBXBuildFile; fileRef = 14C88AFB2050C98E00768DED /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +47,6 @@
 			buildActionMask = 2147483647;
 			dstSubfolderSpec = 10;
 			files = (
-				BF_683460714191 /* BKAutograder.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,13 +66,7 @@
 		3C6CFD401E62885100D991A0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3C6CFD421E62889D00D991A0 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		3C6CFD441E6288BB00D991A0 /* PokemonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonInfoViewController.swift; sourceTree = "<group>"; };
-		FR_178765736174 /* SearchViewControllerTestSuite.csv */ = {isa = PBXFileReference; name = SearchViewControllerTestSuite.csv; path = SearchViewControllerTestSuite.csv; sourceTree = "<group>"; };
-		FR_209053577773 /* CategoryViewControllerTestSuite.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = CategoryViewControllerTestSuite.swift; path = CategoryViewControllerTestSuite.swift; sourceTree = "<group>"; };
-		FR_396862796810 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; lastKnownFileType = text.plist.xml; name = Info.plist; path = Info.plist; sourceTree = "<group>"; };
 		FR_549151614181 /* Autograder.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Autograder.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FR_705765005086 /* CategoryViewControllerTestSuite.csv */ = {isa = PBXFileReference; name = CategoryViewControllerTestSuite.csv; path = CategoryViewControllerTestSuite.csv; sourceTree = "<group>"; };
-		FR_768500610532 /* SearchViewControllerTestSuite.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = SearchViewControllerTestSuite.swift; path = SearchViewControllerTestSuite.swift; sourceTree = "<group>"; };
-		FR_812998827470 /* BKAutograder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BKAutograder.framework; path = Autograder/Frameworks/BKAutograder.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +81,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF_613981408126 /* BKAutograder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,8 +92,6 @@
 			children = (
 				3C6CFD091E62850E00D991A0 /* PokedexLab */,
 				3C6CFD081E62850E00D991A0 /* Products */,
-				G_1952740716080 /* Frameworks */,
-				G_2557420250371 /* Autograder */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,45 +136,6 @@
 				3C6CFD3A1E62854300D991A0 /* PokemonGenerator.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		G_1952740716080 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FR_812998827470 /* BKAutograder.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		G_2557420250371 /* Autograder */ = {
-			isa = PBXGroup;
-			children = (
-				FR_396862796810 /* Info.plist */,
-				G_5772313099335 /* SearchViewController */,
-				G_5445048713209 /* CategoryViewController */,
-			);
-			name = Autograder;
-			path = Autograder;
-			sourceTree = "<group>";
-		};
-		G_5445048713209 /* CategoryViewController */ = {
-			isa = PBXGroup;
-			children = (
-				FR_209053577773 /* CategoryViewControllerTestSuite.swift */,
-				FR_705765005086 /* CategoryViewControllerTestSuite.csv */,
-			);
-			name = CategoryViewController;
-			path = CategoryViewController;
-			sourceTree = "<group>";
-		};
-		G_5772313099335 /* SearchViewController */ = {
-			isa = PBXGroup;
-			children = (
-				FR_768500610532 /* SearchViewControllerTestSuite.swift */,
-				FR_178765736174 /* SearchViewControllerTestSuite.csv */,
-			);
-			name = SearchViewController;
-			path = SearchViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,8 +233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF_157456206171 /* SearchViewControllerTestSuite.csv in Resources */,
-				BF_835356725815 /* CategoryViewControllerTestSuite.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,8 +256,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF_145599767391 /* SearchViewControllerTestSuite.swift in Sources */,
-				BF_391335381937 /* CategoryViewControllerTestSuite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

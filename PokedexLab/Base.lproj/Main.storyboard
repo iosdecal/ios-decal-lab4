@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Pokedex-->
         <scene sceneID="4XG-1A-goK">
             <objects>
-                <viewController id="26r-xK-pvi" customClass="SearchViewController" customModule="PokedexLab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="26r-xK-pvi" customClass="SearchViewController" customModule="Autograder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WJh-GE-BYE"/>
                         <viewControllerLayoutGuide type="bottom" id="yE2-nh-1Ym"/>
@@ -33,7 +30,7 @@
         <!--Category View Controller-->
         <scene sceneID="PV6-76-m19">
             <objects>
-                <viewController id="qZt-4R-9VC" customClass="CategoryViewController" customModule="PokedexLab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qZt-4R-9VC" customClass="CategoryViewController" customModule="Autograder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xK5-rd-I4P"/>
                         <viewControllerLayoutGuide type="bottom" id="81d-QP-MI2"/>
@@ -51,7 +48,7 @@
         <!--Pokemon Info View Controller-->
         <scene sceneID="cP1-mI-MTZ">
             <objects>
-                <viewController id="YzK-rK-0EI" customClass="PokemonInfoViewController" customModule="PokedexLab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YzK-rK-0EI" customClass="PokemonInfoViewController" customModule="Autograder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EOB-7c-hCm"/>
                         <viewControllerLayoutGuide type="bottom" id="Oov-aI-est"/>
@@ -70,7 +67,7 @@
                                 <rect key="frame" x="16" y="379" width="343" height="280"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWM-Hh-1BN">
-                                        <rect key="frame" x="97" y="8" width="148" height="29"/>
+                                        <rect key="frame" x="97.5" y="8" width="148" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="148" id="pAT-Sm-Dfq"/>
                                         </constraints>
