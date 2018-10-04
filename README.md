@@ -6,7 +6,7 @@
 
 In this lab you'll get to see how tableviews and collectionviews are typically implemented in an iOS app. We'll be building a simple Pokedex app that displays a list of different Pokemon by category and allows you to view their statistics.
 
-To begin this lab, clone this repository onto your own computer:
+To begin this lab, clone this repository onto your own computer or download a zip version:
 	
 	git clone https://github.com/iosdecal/ios-decal-lab4
 
@@ -67,7 +67,7 @@ You'll find the dictionary in `PokemonGenerator.swift` particularly useful for t
 - In `didSelectItemAt` you'll need to implement the following functionality:
  - Use the `filteredPokemon(ofType type: Int)` function to get an array of Pokemon belonging to the selected category (based off the cell the user selected).
  - Then perform a segue to CategoryViewController using the identifier you created in Part 1. (Though we've only gone over triggering segues in Storyboard by control-dragging from a button, you can trigger a segue that you created in Storyboard between two view controllers programmatically by calling the following method in your code: `performSegue(withIdentifier: <YourSegueIdentifierFromStoryboard>, sender: <Any?>)`	
-- Since we only want the CategoryViewController to display Pokemon from the category selected by the user, we need to create and implement the `prepareForSegue` method as well to pass along which Pokemon should be displayed. To do this, add the prepareForSegue method to the SearchViewController, and set the pokemonArray variable in the destination view controller (segue.destination) to your filtered array. (If you're having trouble at this step, check out the prepare for segue example in [Lecture 3](http://iosdecal.com/fall-2017-slides/lecture3.pdf#page=32))
+- Since we only want the CategoryViewController to display Pokemon from the category selected by the user, we need to create and implement the `prepareForSegue` method as well to pass along which Pokemon should be displayed. To do this, add the prepareForSegue method to the SearchViewController, and set the pokemonArray variable in the destination view controller (segue.destination) to your filtered array. (If you're having trouble at this step, check out the prepare for segue example in [Lecture 4](https://drive.google.com/open?id=1ONnUUkurmfIGnPHytIIL6s7G0WBk_OxG))
 
 Once you've completed all of these steps, you should be able to run the program and see a grid of 18 different Pokemon categories. 
 
@@ -130,4 +130,4 @@ For reference, `cachedImages` is a dictionary that stores images we've already l
 And that's it! If everything works correctly, you should be able to navigate across the entire app and click on any Pokemon to see its statistics. You've now built your first tableview/collectionview app!
 
 ## Grading ##
-Once you've finished the lab, you can get checked-off using this form: https://goo.gl/forms/RuV3a8KHjt0x86DQ2. If you weren't able to finish before 8pm, make sure to fill in the keyword question, and be sure to check-off next week at the beginning of lab.
+Once you've finished the lab, you can get checked-off by showing a TA or Facilitaotr a working version of the app. 
